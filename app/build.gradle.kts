@@ -53,6 +53,8 @@ dependencies {
     implementation (AndroidX.appCompat)
     /** Google **/
     implementation (Google.material)
+    implementation (Google.accompanist)
+
     /** Compose **/
     implementation(Compose.viewModelCompose)
     implementation(Compose.activityCompose)
@@ -78,5 +80,11 @@ dependencies {
     kapt(Room.roomCompiler)
     implementation(Room.roomKtx)
     testImplementation(Room.roomTesting)
+    /** Coil **/
+    implementation(Coil.coilCompose)
+    implementation(Coil.coilGif)
+
+
+
 
 }

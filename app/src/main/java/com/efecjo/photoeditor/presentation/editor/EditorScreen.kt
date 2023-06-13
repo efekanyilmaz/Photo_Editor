@@ -5,7 +5,6 @@ import androidx.compose.runtime.Composable
 @Composable
 fun EditorScreen(
     onNavigate: (String) -> Unit,
-    onPopBackStack: () -> Unit,
-    scaffoldState: androidx.compose.material.ScaffoldState
+    onPopBackStack: () -> Unit
 ) {
 }

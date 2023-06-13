@@ -12,3 +12,7 @@ val IconSizeMedium = 25.dp
 val IconSizeLarge = 35.dp
 
 val BottomNavigationHeight = 50.dp
+
+val SplashScreenImageHeight = 200.dp
+
+val BottomBarElevation = 5.dp

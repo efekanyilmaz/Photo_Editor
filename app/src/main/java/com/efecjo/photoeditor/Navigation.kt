@@ -16,8 +16,7 @@ import com.efecjo.photoeditor.util.Screen
 
 @Composable
 fun Navigation(
-    navController: NavHostController,
-    scaffoldState: ScaffoldState,
+    navController: NavHostController
 ) {
     NavHost(navController = navController,
             startDestination = Screen.SplashScreen.route,
@@ -25,7 +24,6 @@ fun Navigation(
     ) {
         composable(Screen.SplashScreen.route) {
         SplashScreen(
-            scaffoldState = scaffoldState,
             onPopBackStack = navController::popBackStack,
             onNavigate = navController::navigate,
         )
@@ -34,14 +32,12 @@ fun Navigation(
             MainScreen(
                 onNavigate = navController::navigate,
                 onPopBackStack = navController::popBackStack,
-                scaffoldState = scaffoldState
             )
         }
         composable(Screen.EditorScreen.route) {
             EditorScreen(
                 onNavigate = navController::navigate,
                 onPopBackStack = navController::popBackStack,
-                scaffoldState = scaffoldState
             )
         }
     }

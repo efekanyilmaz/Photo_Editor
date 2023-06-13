@@ -13,9 +13,9 @@ interface PhotosDao {
     @Delete
     suspend fun delete(photosEntity: PhotosEntity)
 
-    @Query("SELECT * FROM photos_table")
+    @Query("SELECT * FROM photos")
     fun getAll(): List<PhotosEntity>
 
-    @Query("SELECT * FROM photos_table WHERE id = :id")
+    @Query("SELECT * FROM photos WHERE id = :id")
     suspend fun getPhotosById(id: Int): List<PhotosEntity>
 }
