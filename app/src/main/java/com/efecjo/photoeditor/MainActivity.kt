@@ -10,8 +10,11 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.core.view.WindowCompat
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.efecjo.photoeditor.presentation.components.StandardScaffold
@@ -26,10 +29,9 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
 
         setContent {
-            val systemUiController = rememberSystemUiController()
-            systemUiController.isStatusBarVisible = false
             PhotoEditorTheme {
                 PhotoEditorApp()
             }
@@ -46,7 +48,13 @@ fun PhotoEditorApp() {
     ) {
         val navController = rememberNavController()
         val navBackStackEntry by navController.currentBackStackEntryAsState()
+        val systemUiController = rememberSystemUiController()
 
+        SideEffect {
+            systemUiController.setSystemBarsColor(
+                Color.Transparent,
+                darkIcons = false)
+        }
         StandardScaffold(
             navController = navController,
             showBottomBar = navBackStackEntry?.shouldShowBottomBar() ?: false,
