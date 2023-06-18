@@ -53,7 +53,8 @@ dependencies {
     implementation (AndroidX.appCompat)
     /** Google **/
     implementation (Google.material)
-    implementation (Google.accompanist)
+    implementation (Google.accompanistSystemUiController)
+    implementation (Google.accompanistPermission)
 
     /** Compose **/
     implementation(Compose.viewModelCompose)

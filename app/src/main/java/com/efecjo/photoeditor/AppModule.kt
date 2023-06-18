@@ -7,9 +7,11 @@ import android.content.SharedPreferences
 import androidx.room.Room
 import com.efecjo.photoeditor.data.AppDatabase
 import com.efecjo.photoeditor.data.AppRepositoryImpl
+import com.efecjo.photoeditor.data.MainRepositoryImpl
 import com.efecjo.photoeditor.data.database.photos.PhotosDao
 import com.efecjo.photoeditor.data.databaseName
 import com.efecjo.photoeditor.domain.repository.AppRepository
+import com.efecjo.photoeditor.domain.repository.MainRepository
 import com.efecjo.photoeditor.domain.use_case.splash.InitOperationsUseCase
 import com.efecjo.photoeditor.util.AppConstants
 import dagger.Module
@@ -57,5 +59,11 @@ object AppModule {
     @Provides
     fun providePhotosDao(appDatabase: AppDatabase): PhotosDao {
         return appDatabase.photosDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideMainRepository(database: AppDatabase, @ApplicationContext appContext: Context): MainRepository {
+        return MainRepositoryImpl(database,appContext)
     }
 }

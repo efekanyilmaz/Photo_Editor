@@ -5,7 +5,8 @@ import android.os.PersistableBundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.rememberScaffoldState
@@ -49,16 +50,18 @@ fun PhotoEditorApp() {
         val navController = rememberNavController()
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val systemUiController = rememberSystemUiController()
+        val statusBarHeight = WindowInsets.systemBars.asPaddingValues()
 
         SideEffect {
             systemUiController.setSystemBarsColor(
                 Color.Transparent,
-                darkIcons = false)
+                darkIcons = false,
+                isNavigationBarContrastEnforced = true)
         }
         StandardScaffold(
             navController = navController,
             showBottomBar = navBackStackEntry?.shouldShowBottomBar() ?: false,
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier.fillMaxSize().padding(paddingValues = statusBarHeight).background(Color.Transparent),
             onFabClick = {
             },
             bottomNavItems = mainScreenItems

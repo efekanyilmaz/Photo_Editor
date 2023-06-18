@@ -6,5 +6,6 @@ object Google {
     const val googleServices = "com.google.gms:google-services:$googleServicesVersion"
 
     private const val accompanistVersion = "0.17.0"
-    const val accompanist = "com.google.accompanist:accompanist-systemuicontroller:$accompanistVersion"
+    const val accompanistSystemUiController = "com.google.accompanist:accompanist-systemuicontroller:$accompanistVersion"
+    const val accompanistPermission = "com.google.accompanist:accompanist-permissions:$accompanistVersion"
 }

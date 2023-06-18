@@ -1,25 +1,17 @@
 package com.efecjo.photoeditor.presentation.splash
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
-import coil.compose.rememberImagePainter
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.semantics.Role.Companion.Image
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import coil.ImageLoader
-import coil.compose.rememberAsyncImagePainter
 import com.efecjo.photoeditor.R
 import com.efecjo.photoeditor.presentation.components.GifImage
 import com.efecjo.photoeditor.presentation.theme.DarkBlue
-import com.efecjo.photoeditor.presentation.theme.SkyBlue
-import com.efecjo.photoeditor.presentation.theme.SplashScreenImageHeight
+import com.efecjo.photoeditor.presentation.theme.GreenSplash
+import com.efecjo.photoeditor.util.Screen
+import com.efecjo.photoeditor.util.UiEvent
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 
@@ -46,21 +38,13 @@ fun SplashScreen(
     LaunchedEffect(key1 = true) {
         viewModel.splashFlow.collectLatest { flow ->
             when (flow) {
-                is SplashScreenFlow.Idle -> {
-                    // Do nothing yet
+                is UiEvent.Navigate -> {
+                    onNavigate(flow.route)
                 }
-                is SplashScreenFlow.Initial -> {
-                    // Do nothing yet
+                UiEvent.NavigateBack -> {
+                    onPopBackStack()
                 }
-                is SplashScreenFlow.RedirectedToEditor -> {
-                    onNavigate("editor_screen")
-                }
-                is SplashScreenFlow.RedirectedToSettings -> {
-                    // Do Nothing Yet
-                }
-                is SplashScreenFlow.RetryInitOps -> {
-                    // Show error and retry atempt will shown
-                }
+                else -> {}
             }
         }
     }
@@ -84,7 +68,7 @@ fun SplashScreenContent(
     viewModel: SplashViewModel,
     gif: MutableState<Int>
 ) {
-    Surface(color = DarkBlue) {
+    Surface(color = GreenSplash, modifier = Modifier.fillMaxSize()) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
